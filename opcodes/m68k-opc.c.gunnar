@@ -1,5 +1,5 @@
 /* Opcode table for m680[012346]0/m6888[12]/m68851/mcf5200.
-   Copyright (C) 1989-2022 Free Software Foundation, Inc.
+   Copyright (C) 1989-2019 Free Software Foundation, Inc.
 
    This file is part of the GNU opcodes library.
 
@@ -42,7 +42,8 @@ const struct m68k_opcode m68k_opcodes[] =
 
 {"addib", 4,	one(0003000),	one(0177700), "#b$s", m68000up },
 {"addiw", 4,	one(0003100),	one(0177700), "#w$s", m68000up },
-{"addiwl",4,   one(0003300),  one(0177700), "#w$s", m68080 }, // 68080 APOLLO
+{"addiwl",4,    one(0003300),   one(0177700), "#w$s", m68000up }, // 68080 APOLLO
+
 {"addil", 6,	one(0003200),	one(0177700), "#l$s", m68000up },
 {"addil", 6,	one(0003200),	one(0177700), "#lDs", mcfisa_a },
 
@@ -236,7 +237,7 @@ const struct m68k_opcode m68k_opcodes[] =
 {"chk2w", 4, 	two(0001300,0004000),	two(0177700,07777), "!sR1", m68020up | cpu32 | fido_a },
 {"chk2l", 4, 	two(0002300,0004000),	two(0177700,07777), "!sR1", m68020up | cpu32 | fido_a },
 
-{"chkl", 2,	one(0040400),		one(0170700), ";lDd", m68020up },
+{"chkl", 2,	one(0040400),		one(0170700), ";lDd", m68000up },
 {"chkw", 2,	one(0040600),		one(0170700), ";wDd", m68000up },
 
 #define SCOPE_LINE (0x1 << 3)
@@ -266,15 +267,13 @@ const struct m68k_opcode m68k_opcodes[] =
 {"cmpaw", 2,	one(0130300),	one(0170700), "*wAd", m68000up },
 {"cmpal", 2,	one(0130700),	one(0170700), "*lAd", m68000up | mcfisa_a },
 
-{"cmpib", 4,	one(0006000),	one(0177700), "#b$s", m68000 | m68010 },
-{"cmpib", 4,	one(0006000),	one(0177700), "#b@s", m68020up | cpu32 | fido_a },
+{"cmpib", 4,	one(0006000),	one(0177700), "#b@s", m68000up },
 {"cmpib", 4,	one(0006000),	one(0177700), "#bDs", mcfisa_b | mcfisa_c },
-{"cmpiw", 4,	one(0006100),	one(0177700), "#w$s", m68000 | m68010 },
-{"cmpiw", 4,	one(0006100),	one(0177700), "#w@s", m68020up | cpu32 | fido_a },
+{"cmpiw", 4,	one(0006100),	one(0177700), "#w@s", m68000up },
 {"cmpiw", 4,	one(0006100),	one(0177700), "#wDs", mcfisa_b | mcfisa_c },
-{"cmpiwl",4,   one(0047000),  one(0177700), "#w@s", m68000up }, // 68080 APOLLO
-{"cmpil", 6,	one(0006200),	one(0177700), "#l$s", m68000 | m68010 },
-{"cmpil", 6,	one(0006200),	one(0177700), "#l@s", m68020up | cpu32 | fido_a },
+{"cmpiwl",4,    one(0047000),   one(0177700), "#w@s", m68000up }, // 68080 APOLLO
+
+{"cmpil", 6,	one(0006200),	one(0177700), "#l@s", m68000up },
 {"cmpil", 6,	one(0006200),	one(0177700), "#lDs", mcfisa_a },
 
 {"cmpmb", 2,	one(0130410),	one(0170770), "+s+d", m68000up },
@@ -282,21 +281,18 @@ const struct m68k_opcode m68k_opcodes[] =
 {"cmpml", 2,	one(0130610),	one(0170770), "+s+d", m68000up },
 
 /* The cmp opcode can generate the cmpa, cmpm, and cmpi instructions.  */
-{"cmpb", 4,	one(0006000),	one(0177700), "#b$s", m68000 | m68010 },
-{"cmpb", 4,	one(0006000),	one(0177700), "#b@s", m68020up | cpu32 | fido_a },
+{"cmpb", 4,	one(0006000),	one(0177700), "#b@s", m68000up },
 {"cmpb", 4,	one(0006000),	one(0177700), "#bDs", mcfisa_b | mcfisa_c },
 {"cmpb", 2,	one(0130410),	one(0170770), "+s+d", m68000up },
 {"cmpb", 2,	one(0130000),	one(0170700), ";bDd", m68000up },
 {"cmpb", 2,	one(0130000),	one(0170700), "*bDd", mcfisa_b | mcfisa_c },
 {"cmpw", 2,	one(0130300),	one(0170700), "*wAd", m68000up },
-{"cmpw", 4,	one(0006100),	one(0177700), "#w$s", m68000 | m68010 },
-{"cmpw", 4,	one(0006100),	one(0177700), "#w@s", m68020up | cpu32 | fido_a },
+{"cmpw", 4,	one(0006100),	one(0177700), "#w@s", m68000up },
 {"cmpw", 4,	one(0006100),	one(0177700), "#wDs", mcfisa_b | mcfisa_c },
 {"cmpw", 2,	one(0130510),	one(0170770), "+s+d", m68000up },
 {"cmpw", 2,	one(0130100),	one(0170700), "*wDd", m68000up | mcfisa_b | mcfisa_c },
 {"cmpl", 2,	one(0130700),	one(0170700), "*lAd", m68000up | mcfisa_a },
-{"cmpl", 6,	one(0006200),	one(0177700), "#l$s", m68000 | m68010 },
-{"cmpl", 6,	one(0006200),	one(0177700), "#l@s", m68020up | cpu32 | fido_a },
+{"cmpl", 6,	one(0006200),	one(0177700), "#l@s", m68000up },
 {"cmpl", 6,	one(0006200),	one(0177700), "#lDs", mcfisa_a },
 {"cmpl", 2,	one(0130610),	one(0170770), "+s+d", m68000up },
 {"cmpl", 2,	one(0130200),	one(0170700), "*lDd", m68000up | mcfisa_a },
@@ -328,7 +324,7 @@ const struct m68k_opcode m68k_opcodes[] =
 {"dbcc", 2,	one(0052310),	one(0177770), "DsBw", m68000up },
 {"dbcs", 2,	one(0052710),	one(0177770), "DsBw", m68000up },
 {"dbeq", 2,	one(0053710),	one(0177770), "DsBw", m68000up },
-{"dbf", 2,	one(0050710),	one(0177770), "DsBw", m68000up },
+{"dbf",  2,	one(0050710),	one(0177770), "DsBw", m68000up },
 {"dbge", 2,	one(0056310),	one(0177770), "DsBw", m68000up },
 {"dbgt", 2,	one(0057310),	one(0177770), "DsBw", m68000up },
 {"dbhi", 2,	one(0051310),	one(0177770), "DsBw", m68000up },
@@ -338,7 +334,7 @@ const struct m68k_opcode m68k_opcodes[] =
 {"dbmi", 2,	one(0055710),	one(0177770), "DsBw", m68000up },
 {"dbne", 2,	one(0053310),	one(0177770), "DsBw", m68000up },
 {"dbpl", 2,	one(0055310),	one(0177770), "DsBw", m68000up },
-{"dbt", 2,	one(0050310),	one(0177770), "DsBw", m68000up },
+{"dbt",  2,	one(0050310),	one(0177770), "DsBw", m68000up },
 {"dbvc", 2,	one(0054310),	one(0177770), "DsBw", m68000up },
 {"dbvs", 2,	one(0054710),	one(0177770), "DsBw", m68000up },
 
@@ -2351,9 +2347,9 @@ const struct m68k_opcode_alias m68k_opcode_aliases[] =
   { "dbhs",	"dbcc", },
   { "dbhsw",	"dbcc", },
   { "dbra",	"dbf", },
-  { "dbral", "dbfl", },
+  { "dbral",	"dbfl", },
   { "dbraw",	"dbf", },
-  { "tdivsl",	"divsll", },
+  { "tdivsl",	"divsl", },
   { "divs",	"divsw", },
   { "divu",	"divuw", },
   { "ext",	"extw", },
@@ -2463,7 +2459,7 @@ const struct m68k_opcode_alias m68k_opcode_aliases[] =
   { "movsw",	"movesw", },
   { "mov3q",	"mov3ql", },
 
-  { "tdivul",	"divull", },	/* For m68k-svr4.  */
+  { "tdivul",	"divul", },	/* For m68k-svr4.  */
   { "fmovb",	"fmoveb", },
   { "fsmovb",	"fsmoveb", },
   { "fdmovb",	"fdmoveb", },
